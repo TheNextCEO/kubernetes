@@ -140,7 +140,7 @@ web:
   ## configs for the Service of the web Pods
   service:
     type: ClusterIP
-    externalPort: 8080
+    externalPort: 8081
 
   ## configs generating the `webserver_config.py` file
   ## [FAQ] https://github.com/airflow-helm/charts/blob/main/charts/airflow/docs/faq/configuration/airflow-configs.md#webserver_configpy
