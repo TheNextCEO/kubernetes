@@ -6,11 +6,11 @@ metadata:
 spec:
   project: default
   source:
-    chart: sealed-secrets
-    repoURL: https://bitnami-labs.github.io/sealed-secrets
-    targetRevision: 2.2.0
+    chart: airflow
+    repoURL: https://airflow.apache.org/
+    targetRevision: 1.6.0
     helm:
-      releaseName: sealed-secrets
+      releaseName: airflow
   destination:
     server: "https://kubernetes.default.svc"
     namespace: airflow
