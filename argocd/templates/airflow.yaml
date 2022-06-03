@@ -11,6 +11,18 @@ spec:
     targetRevision: 1.6.0
     helm:
       releaseName: airflow
+    helm:
+      # Values file as block file
+      values: |
+        flower:
+          enabled: false
+        redis:
+          enabled: false
+        executor: "KubernetesExecutor"
+        createUserJob:
+          useHelmHooks: false
+        migrateDatabaseJob:
+          useHelmHooks: false
   destination:
     server: "https://kubernetes.default.svc"
     namespace: airflow
