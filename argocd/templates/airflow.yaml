@@ -19,7 +19,7 @@ spec:
         redis:
           enabled: false
         statsd:
-          enabled:false
+          enabled: false
         executor: "KubernetesExecutor"
         createUserJob:
           useHelmHooks: false
