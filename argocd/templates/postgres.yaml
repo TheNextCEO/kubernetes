@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-test
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: postgres
+    repoURL: https://charts.truecharts.org/
+    targetRevision: 8.0.5
+    helm:
+      releaseName:
+        postgres
+        # Values file as block file
+      values: |
+        flower:
+          enabled: false
+        redis:
+          enabled: false
+        statsd:
+          enabled: false
+        postgresql:
+          enabled: false
+        executor: "KubernetesExecutor"
+        createUserJob:
+          useHelmHooks: false
+        migrateDatabaseJob:
+          useHelmHooks: false
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: postgres
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
