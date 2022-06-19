@@ -1,9 +1,9 @@
 ## Create three virtual machines
 
-multipass launch -c 1 -m 1G -d 16G -n k3s-master 18.04
+multipass launch -c 1 -m 1G -d 16G -n k3s-master 18.04 --cpu-architecture x86_64
 
 for f in 1 2; do
-multipass launch -c 1 -m 1G -d 16G -n k3s-worker-$f 18.04
+multipass launch -c 1 -m 1G -d 16G -n k3s-worker-$f 18.04 --cpu-architecture x86_64
 done
 
 multipass list
@@ -37,3 +37,9 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
+# Final step: clean-up everything
+
+multipass stop k3s-master k3s-worker-1 k3s-worker-2
+multipass delete k3s-master k3s-worker-1 k3s-worker-2
+multipass purge
