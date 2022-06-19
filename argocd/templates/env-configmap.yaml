@@ -5,7 +5,6 @@ data:
   POSTGRES_USER: username
 kind: ConfigMap
 metadata:
-  namespace: argocd
   creationTimestamp: null
   labels:
     io.kompose.service: database-env

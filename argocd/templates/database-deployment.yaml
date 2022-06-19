@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: argocd
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.26.1 (HEAD)
