@@ -21,12 +21,14 @@ spec:
         statsd:
           enabled: false
         postgresql:
-          enabled: true
+          enabled: false
         executor: "KubernetesExecutor"
         createUserJob:
           useHelmHooks: false
         migrateDatabaseJob:
           useHelmHooks: false
+        data:
+          metadataSecretName: mydatabase
   destination:
     server: "https://kubernetes.default.svc"
     namespace: airflow
