@@ -21,7 +21,7 @@ spec:
         statsd:
           enabled: false
         postgresql:
-          enabled: false
+          enabled: true
         executor: "KubernetesExecutor"
         createUserJob:
           useHelmHooks: false
