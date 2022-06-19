@@ -7,8 +7,8 @@ spec:
   project: default
   source:
     chart: postgres
-    repoURL: https://charts.truecharts.org/
-    targetRevision: 8.0.5
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: postgresql
     helm:
       releaseName:
         postgres

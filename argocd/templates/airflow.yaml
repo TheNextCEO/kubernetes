@@ -3,7 +3,6 @@ kind: Application
 metadata:
   name: airflow-test
   namespace: argocd
-  create: true
 spec:
   project: default
   source:
