@@ -28,7 +28,14 @@ spec:
         migrateDatabaseJob:
           useHelmHooks: false
         data:
-          metadataSecretName: mydatabase
+          metadataConnection:
+            user: username
+            pass: password
+            protocol: postgresql
+            host: database.airflow.svc.cluster.local
+            port: 5432
+            db: postgres
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: airflow
