@@ -32,7 +32,7 @@ spec:
             user: username
             pass: password
             protocol: postgresql
-            host: database.airflow.svc.cluster.local
+            host: database
             port: 5432
             db: postgres
 
