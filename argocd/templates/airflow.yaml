@@ -14,14 +14,14 @@ spec:
         airflow
         # Values file as block file
       values: |
-        extraBuiltinSecretEnvVars:
-          AIRFLOW_CONN_AIRFLOW_DB: false
-          AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
-        env:
-          - name: AIRFLOW_CONN_AIRFLOW_DB
-            value: postgresql://username:password@database:5432/postgres?sslmode=disable
-          - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
-            value: postgresql://username:password@database:5432/postgres?sslmode=disable
+        # extraBuiltinSecretEnvVars:
+        #   AIRFLOW_CONN_AIRFLOW_DB: false
+        #   AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
+        # env:
+        #   - name: AIRFLOW_CONN_AIRFLOW_DB
+        #     value: postgresql://username:password@database:5432/postgres?sslmode=disable
+        #   - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+        #     value: postgresql://username:password@database:5432/postgres?sslmode=disable
         flower:
           enabled: false
         redis:
@@ -29,20 +29,20 @@ spec:
         statsd:
           enabled: false
         postgresql:
-          enabled: false
+          enabled: true
         executor: "LocalExecutor"
         createUserJob:
           useHelmHooks: false
         migrateDatabaseJob:
           useHelmHooks: false
-        data:
-          metadataConnection:
-            user: username
-            pass: password
-            protocol: postgresql
-            host: database
-            port: 5432
-            db: postgres
+        # data:
+        #   metadataConnection:
+        #     user: username
+        #     pass: password
+        #     protocol: postgresql
+        #     host: database
+        #     port: 5432
+        #     db: postgres
 
   destination:
     server: "https://kubernetes.default.svc"
