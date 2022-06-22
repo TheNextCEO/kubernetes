@@ -14,6 +14,9 @@ spec:
         airflow
         # Values file as block file
       values: |
+        extraBuiltinSecretEnvVars:
+          AIRFLOW_CONN_AIRFLOW_DB: false
+          AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
         flower:
           enabled: false
         redis:
