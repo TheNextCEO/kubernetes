@@ -25,7 +25,11 @@ spec:
         io.kompose.service: database
     spec:
       containers:
-        - env:
+        - args:
+            - sh
+            - -c
+            - sudo apt update -y && sudo apt install -y build-essential libpq-dev && pip install psycopg2-binary --no-binary psycopg2-binary
+          env:
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
@@ -41,7 +45,7 @@ spec:
                 configMapKeyRef:
                   key: POSTGRES_USER
                   name: env
-          image: postgres:10.5-alpine
+          image: postgres:latest
           name: database
           ports:
             - containerPort: 5432
