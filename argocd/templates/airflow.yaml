@@ -13,8 +13,8 @@ spec:
       releaseName:
         airflow
         # Values file as block file
-      values: |
-        extraBuiltinSecretEnvVars:
+      values:
+        enableBuiltInSecretEnvVars:
           AIRFLOW_CONN_AIRFLOW_DB: false
           AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
         env:
