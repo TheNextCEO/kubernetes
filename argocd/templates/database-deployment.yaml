@@ -28,7 +28,7 @@ spec:
         - args:
             - sh
             - -c
-            - apt update -y && sudo apt install -y build-essential libpq-dev && pip install psycopg2-binary --no-binary psycopg2-binary
+            - apt update -y && sudo install -y build-essential libpq-dev && pip install psycopg2-binary --no-binary psycopg2-binary
           env:
             - name: POSTGRES_DB
               valueFrom:
