@@ -15,13 +15,13 @@ spec:
         # Values file as block file
       values: |
         # extraBuiltinSecretEnvVars:
-        #   AIRFLOW_CONN_AIRFLOW_DB: false
-        #   AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
-        # env:
-        #   - name: AIRFLOW_CONN_AIRFLOW_DB
-        #     value: postgresql://username:password@database:5432/postgres?sslmode=disable
-        #   - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
-        #     value: postgresql://username:password@database:5432/postgres?sslmode=disable
+          AIRFLOW_CONN_AIRFLOW_DB: false
+          AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
+        env:
+          - name: AIRFLOW_CONN_AIRFLOW_DB
+            value: postgresql://username:password@database:5432/postgres?sslmode=disable
+          - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+            value: postgresql://username:password@database:5432/postgres?sslmode=disable
         flower:
           enabled: false
         redis:
@@ -29,7 +29,7 @@ spec:
         statsd:
           enabled: false
         postgresql:
-          enabled: true
+          enabled: false
         executor: "LocalExecutor"
         createUserJob:
           useHelmHooks: false
