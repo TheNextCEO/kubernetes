@@ -22,6 +22,8 @@ spec:
             value: postgresql://username:password@database:5432/postgres?sslmode=disable
           - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
             value: postgresql://username:password@database:5432/postgres?sslmode=disable
+          - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
+            value: postgresql://username:password@database:5432/postgres?sslmode=disable
         flower:
           enabled: false
         redis:
