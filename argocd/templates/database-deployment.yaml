@@ -41,7 +41,7 @@ spec:
                 configMapKeyRef:
                   key: POSTGRES_USER
                   name: env
-          image: postgres:latest
+          image: postgres:10.5-alpine
           name: database
           ports:
             - containerPort: 5432
