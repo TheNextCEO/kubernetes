@@ -1,58 +1,58 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: airflow-test
-  namespace: argocd
-spec:
-  project: default
-  source:
-    chart: airflow
-    repoURL: https://airflow.apache.org/
-    targetRevision: 1.6.0
-    helm:
-      releaseName:
-        airflow
-        # Values file as block file
-      values: |
-        enableBuiltInSecretEnvVars:
-          AIRFLOW_CONN_AIRFLOW_DB: false
-          AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
-          AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: false
-        env:
-          - name: AIRFLOW_CONN_AIRFLOW_DB
-            value: postgresql://username:password@database:5432/postgres?sslmode=disable
-          - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
-            value: postgresql://username:password@database:5432/postgres?sslmode=disable
-          - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
-            value: postgresql://username:password@database:5432/postgres?sslmode=disable
-        flower:
-          enabled: false
-        redis:
-          enabled: false
-        statsd:
-          enabled: false
-        postgresql:
-          enabled: false
-        executor: "LocalExecutor"
-        createUserJob:
-          useHelmHooks: false
-        migrateDatabaseJob:
-          useHelmHooks: false
-        # data:
-        #   metadataConnection:
-        #     user: username
-        #     pass: password
-        #     protocol: postgresql
-        #     host: database
-        #     port: 5432
-        #     db: postgres
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: airflow-test
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     chart: airflow
+#     repoURL: https://airflow.apache.org/
+#     targetRevision: 1.6.0
+#     helm:
+#       releaseName:
+#         airflow
+#         # Values file as block file
+#       values: |
+#         enableBuiltInSecretEnvVars:
+#           AIRFLOW_CONN_AIRFLOW_DB: false
+#           AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
+#           AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: false
+#         env:
+#           - name: AIRFLOW_CONN_AIRFLOW_DB
+#             value: postgresql://username:password@database:5432/postgres?sslmode=disable
+#           - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+#             value: postgresql://username:password@database:5432/postgres?sslmode=disable
+#           - name: AIRFLOW__DATABASE__SQL_ALCHEMY_CONN
+#             value: postgresql://username:password@database:5432/postgres?sslmode=disable
+#         flower:
+#           enabled: false
+#         redis:
+#           enabled: false
+#         statsd:
+#           enabled: false
+#         postgresql:
+#           enabled: false
+#         executor: "LocalExecutor"
+#         createUserJob:
+#           useHelmHooks: false
+#         migrateDatabaseJob:
+#           useHelmHooks: false
+#         # data:
+#         #   metadataConnection:
+#         #     user: username
+#         #     pass: password
+#         #     protocol: postgresql
+#         #     host: database
+#         #     port: 5432
+#         #     db: postgres
 
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: airflow
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+#   destination:
+#     server: "https://kubernetes.default.svc"
+#     namespace: airflow
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
