@@ -17,6 +17,7 @@ spec:
         enableBuiltInSecretEnvVars:
           AIRFLOW_CONN_AIRFLOW_DB: false
           AIRFLOW__CORE__SQL_ALCHEMY_CONN: false
+          AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: false
         env:
           - name: AIRFLOW_CONN_AIRFLOW_DB
             value: postgresql://username:password@database:5432/postgres?sslmode=disable
