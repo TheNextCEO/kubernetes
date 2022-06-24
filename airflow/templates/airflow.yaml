@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: airflow-test
-  namespace: argocd
+  namespace: airflow
 spec:
   project: default
   source:
