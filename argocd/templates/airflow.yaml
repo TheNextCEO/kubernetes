@@ -38,6 +38,10 @@ spec:
           useHelmHooks: false
         migrateDatabaseJob:
           useHelmHooks: false
+        webserver:
+          service:
+            type: 
+
         # data:
         #   metadataConnection:
         #     user: username
