@@ -25,11 +25,7 @@ spec:
         io.kompose.service: database
     spec:
       containers:
-        - args:
-            - sh
-            - -c
-            - apt-get update -y && apt-get install -y build-essential libpq-dev
-          env:
+        - env:
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
