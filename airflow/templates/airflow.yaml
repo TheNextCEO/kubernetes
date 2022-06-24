@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: airflow-test
-  namespace: airflow1
+  namespace: airflowy
 spec:
   project: default
   source:
