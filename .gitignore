@@ -1,0 +1,17 @@
+argocd/myfirstchart/.helmignore
+argocd/myfirstchart/Chart.yaml
+argocd/myfirstchart/values.yaml
+argocd/myfirstchart/templates/_helpers.tpl
+argocd/myfirstchart/templates/deployment.yaml
+argocd/myfirstchart/templates/hpa.yaml
+argocd/myfirstchart/templates/ingress.yaml
+argocd/myfirstchart/templates/NOTES.txt
+argocd/myfirstchart/templates/service.yaml
+argocd/myfirstchart/templates/serviceaccount.yaml
+argocd/myfirstchart/templates/tests/test-connection.yaml
+docker/postgres/Dockerfile
+docker/postgres/k3s.yaml
+*.DS_Store
+.prettierrc
+k3s.yaml
+Kompose.md
