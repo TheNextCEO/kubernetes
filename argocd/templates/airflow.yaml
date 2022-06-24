@@ -38,6 +38,9 @@ spec:
           useHelmHooks: false
         migrateDatabaseJob:
           useHelmHooks: false
+        ingress:
+          web:
+            enabled: true
         # data:
         #   metadataConnection:
         #     user: username
