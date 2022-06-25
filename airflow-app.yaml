@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: airflow
+  name: bootstrap-cluster
 spec:
   destination:
     name: ""
-    namespace: airflow
+    namespace: argocd
     server: https://kubernetes.default.svc
   source:
     path: airflow
