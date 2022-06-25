@@ -10,64 +10,65 @@ spec:
     repoURL: https://thenextceo.github.io/postgresql
     targetRevision: 0.0.1
     helm:
-      replicaCount: 1
-      image:
-        repository: postgres
-        pullPolicy: IfNotPresent
-        tag: "13.5-bullseye"
+      values: |
+        replicaCount: 1
+        image:
+          repository: postgres
+          pullPolicy: IfNotPresent
+          tag: "13.5-bullseye"
 
-      imagePullSecrets: []
-      nameOverride: ""
-      fullnameOverride: ""
+        imagePullSecrets: []
+        nameOverride: ""
+        fullnameOverride: ""
 
-      serviceAccount:
-        create: false
-        annotations: {}
-        name: ""
+        serviceAccount:
+          create: false
+          annotations: {}
+          name: ""
 
-      containerPort: 5432
+        containerPort: 5432
 
-      podAnnotations: {}
+        podAnnotations: {}
 
-      podSecurityContext:
-        {}
-
-      securityContext:
-        {}
-
-      service:
-        type: ClusterIP
-        port: 5432
-
-      ingress:
-        enabled: false
-        className: ""
-        annotations:
+        podSecurityContext:
           {}
-        hosts:
-          - host: localhost
-            paths:
-              - path: /
-                pathType: ImplementationSpecific
-        tls: []
-        #  - secretName: chart-example-tls
-        #    hosts:
-        #      - chart-example.local
 
-      connection:
-        database: postgres
-        username: username
-        password: password
-        
-      resources:
-        {}
+        securityContext:
+          {}
 
-      autoscaling:
-        enabled: false
-        minReplicas: 1
-        maxReplicas: 100
-        targetCPUUtilizationPercentage: 80
-        # targetMemoryUtilizationPercentage: 80
+        service:
+          type: ClusterIP
+          port: 5432
+
+        ingress:
+          enabled: false
+          className: ""
+          annotations:
+            {}
+          hosts:
+            - host: localhost
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+          tls: []
+          #  - secretName: chart-example-tls
+          #    hosts:
+          #      - chart-example.local
+
+        connection:
+          database: postgres
+          username: username
+          password: password
+          
+        resources:
+          {}
+
+        autoscaling:
+          enabled: false
+          minReplicas: 1
+          maxReplicas: 100
+          targetCPUUtilizationPercentage: 80
+          # targetMemoryUtilizationPercentage: 80
 
 
   destination:
