@@ -45,7 +45,7 @@ service:
   port: 5432
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations:
     {}
