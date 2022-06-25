@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     chart: postgresql
-    repoURL: https://thenextceo.github.io/
+    repoURL: https://thenextceo.github.io/postgresql/
     targetRevision: 1.0.0
     helm:
       releaseName:
