@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: database-test
+  name: database
   namespace: argocd
 spec:
   project: default

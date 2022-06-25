@@ -46,7 +46,7 @@ spec:
             user: username
             pass: password
             protocol: postgresql
-            host: database
+            host: database-postgresql
             port: 5432
             db: postgres
 
