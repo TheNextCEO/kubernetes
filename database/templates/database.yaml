@@ -1,82 +1,108 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: v1
+kind: Service
 metadata:
-  name: database-test
-  namespace: airflow
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: database
+  name: database
 spec:
-  project: default
-  source:
-    chart: postgresql
-    repoURL: https://thenextceo.github.io/postgresql
-    targetRevision: 0.0.1
-    helm:
-      values: |
-        replicaCount: 1
-        image:
-          repository: postgres
-          pullPolicy: IfNotPresent
-          tag: "13.5-bullseye"
+  ports:
+    - name: "5432"
+      port: 5432
+      targetPort: 5432
+  selector:
+    io.kompose.service: database
+status:
+  loadBalancer: {}
 
-        imagePullSecrets: []
-        nameOverride: ""
-        fullnameOverride: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: database-claim0
+  name: database-claim0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+status: {}
 
-        serviceAccount:
-          create: false
-          annotations: {}
-          name: ""
+---
+apiVersion: v1
+data:
+  POSTGRES_DB: postgres
+  POSTGRES_PASSWORD: password
+  POSTGRES_USER: username
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: database-env
+  name: env
 
-        containerPort: 5432
-
-        podAnnotations: {}
-
-        podSecurityContext:
-          {}
-
-        securityContext:
-          {}
-
-        service:
-          type: ClusterIP
-          port: 5432
-
-        ingress:
-          enabled: false
-          className: ""
-          annotations:
-            {}
-          hosts:
-            - host: localhost
-              paths:
-                - path: /
-                  pathType: ImplementationSpecific
-          tls: []
-          #  - secretName: chart-example-tls
-          #    hosts:
-          #      - chart-example.local
-
-        connection:
-          database: postgres
-          username: username
-          password: password
-          
-        resources:
-          {}
-
-        autoscaling:
-          enabled: false
-          minReplicas: 1
-          maxReplicas: 100
-          targetCPUUtilizationPercentage: 80
-          # targetMemoryUtilizationPercentage: 80
-
-
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: airflow
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: database
+  name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.1 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: database
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_DB
+                  name: env
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: env
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_USER
+                  name: env
+          image: postgres:13.5-bullseye
+          name: database
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data/
+              name: database-claim0
+      restartPolicy: Always
+      revisionHistoryLimit: 3
+      volumes:
+        - name: database-claim0
+          persistentVolumeClaim:
+            claimName: database-claim0
+status: {}
