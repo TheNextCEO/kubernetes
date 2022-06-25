@@ -7,5 +7,19 @@ spec:
   project: default
   source:
     chart: postgresql
-    repoURL: https://thenextceo.github.io/postgresql/
+    repoURL: https://thenextceo.github.io/postgresql
     targetRevision: 0.0.1
+    helm:
+      releaseName:
+        database
+        # Values file as block file
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: airflow
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
