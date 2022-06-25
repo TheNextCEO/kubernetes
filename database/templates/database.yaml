@@ -100,7 +100,6 @@ spec:
             - mountPath: /var/lib/postgresql/data/
               name: database-claim0
       restartPolicy: Always
-      revisionHistoryLimit: 3
       volumes:
         - name: database-claim0
           persistentVolumeClaim:
