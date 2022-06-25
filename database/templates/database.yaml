@@ -8,7 +8,7 @@ spec:
   source:
     chart: postgresql
     repoURL: https://thenextceo.github.io/postgresql/
-    targetRevision: 1.0.0
+    targetRevision: 0.0.1
 
 
   destination:
