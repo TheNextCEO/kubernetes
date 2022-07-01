@@ -38,11 +38,11 @@ spec:
             # Port used to expose Prometheus metrics
             port: 9092
             serviceMonitor:
-            # Enable deployment of Prometheus Operator ServiceMonitor resource
-            enabled: false
-            # namespace: monitoring
-            # Additional labels for the ServiceMonitor
-            labels: {}
+              # Enable deployment of Prometheus Operator ServiceMonitor resource
+              enabled: false
+              # namespace: monitoring
+              # Additional labels for the ServiceMonitor
+              labels: {}
 
   destination:
     server: "https://kubernetes.default.svc"
