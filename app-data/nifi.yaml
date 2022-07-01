@@ -10,7 +10,7 @@ spec:
   source:
     path: nifi
     repoURL: "https://github.com/TheNextCEO/kubernetes.git"
-    targetRevision: master
+    targetRevision: staging
     helm:
       valueFiles:
         - values.yaml
