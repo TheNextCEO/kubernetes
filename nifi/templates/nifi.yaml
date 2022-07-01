@@ -14,20 +14,6 @@ spec:
 				nifi
 				# Values file as block file
 			values: |
-				# Number of nifi nodes
-				replicaCount: 1
-				auth:
-				admin: CN=admin, OU=NIFI
-				SSL:
-					keystorePasswd: changeMe
-					truststorePasswd: changeMe
-
-				# Automaticaly disabled if OIDC or LDAP enabled
-				singleUser:
-					username: username
-					password: changemechangeme # Must to have at least 12 characters
-					## Configure Ingress based on the documentation here: https://kubernetes.io/docs/concepts/services-networking/ingress/
-					##
 				ingress:
 					enabled: true
 					# className: nginx
@@ -39,13 +25,13 @@ spec:
 				# Configure metrics
 				metrics:
 					prometheus:
-							# Enable Prometheus metrics
-							enabled: false
-							# Port used to expose Prometheus metrics
-							port: 9092
-							serviceMonitor:
-							# Enable deployment of Prometheus Operator ServiceMonitor resource
-							enabled: false
-							# namespace: monitoring
-							# Additional labels for the ServiceMonitor
-							labels: {}
+						# Enable Prometheus metrics
+						enabled: true
+						# Port used to expose Prometheus metrics
+						port: 9092
+						serviceMonitor:
+						# Enable deployment of Prometheus Operator ServiceMonitor resource
+						enabled: false
+						# namespace: monitoring
+						# Additional labels for the ServiceMonitor
+						labels: {}
