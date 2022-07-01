@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     chart: nifi
-    repoURL: https://cetic.github.io/helm-charts/
+    repoURL: https://cetic.github.io/
     targetRevision: 1.1.0
     helm:
 			values: |
