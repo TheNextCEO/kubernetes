@@ -10,35 +10,36 @@ spec:
     repoURL: https://cetic.github.io/
     targetRevision: 1.1.0
     helm:
-			values:
-				# Number of nifi nodes
-				replicaCount: 1
+      releaseName: nifi
+      values: |
+        # Number of nifi nodes
+         replicaCount: 1
 
-				## Set default image, imageTag, and imagePullPolicy.
-				## ref: https://hub.docker.com/r/apache/nifi/
-				##
-				image:
-					repository: apache/nifi
-					tag: "1.14.0"
-					pullPolicy: "IfNotPresent"
-				ingress:
-					enabled: true
-					# className: nginx
-					annotations: {}
-					tls: []
-					hosts: []
-					path: /
-					# If you want to change the default path, see this issue https://github.com/cetic/helm-nifi/issues/22
-				# Configure metrics
-				metrics:
-					prometheus:
-						# Enable Prometheus metrics
-						enabled: true
-						# Port used to expose Prometheus metrics
-						port: 9092
-						serviceMonitor:
-						# Enable deployment of Prometheus Operator ServiceMonitor resource
-						enabled: false
-						# namespace: monitoring
-						# Additional labels for the ServiceMonitor
-						labels: {}
+          ## Set default image, imageTag, and imagePullPolicy.
+          ## ref: https://hub.docker.com/r/apache/nifi/
+          ##
+          image:
+            repository: apache/nifi
+            tag: "1.14.0"
+            pullPolicy: "IfNotPresent"
+          ingress:
+            enabled: true
+            # className: nginx
+            annotations: {}
+            tls: []
+            hosts: []
+            path: /
+            # If you want to change the default path, see this issue https://github.com/cetic/helm-nifi/issues/22
+          # Configure metrics
+          metrics:
+            prometheus:
+              # Enable Prometheus metrics
+              enabled: true
+              # Port used to expose Prometheus metrics
+              port: 9092
+              serviceMonitor:
+              # Enable deployment of Prometheus Operator ServiceMonitor resource
+              enabled: false
+              # namespace: monitoring
+              # Additional labels for the ServiceMonitor
+              labels: {}
