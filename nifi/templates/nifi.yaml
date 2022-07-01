@@ -10,7 +10,7 @@ spec:
     repoURL: https://cetic.github.io/
     targetRevision: 1.1.0
     helm:
-			values: |
+			values:
 				# Number of nifi nodes
 				replicaCount: 1
 
