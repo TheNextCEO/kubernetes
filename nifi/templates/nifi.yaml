@@ -27,7 +27,7 @@ spec:
           # className: nginx
           annotations: {}
           tls: []
-          hosts: []
+          hosts: localhose
           path: /
           # If you want to change the default path, see this issue https://github.com/cetic/helm-nifi/issues/22
         zookeeper:
