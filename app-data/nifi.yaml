@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: bootstrap-cluster
 spec:
-  destination:
+	destination:
     name: ""
     namespace: argocd
     server: https://kubernetes.default.svc

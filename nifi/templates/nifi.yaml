@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nifi
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: nifi
+    repoURL: https://cetic.github.io/helm-charts/
+    targetRevision: 1.1.0
+    helm:
+      # Number of nifi nodes
+      replicaCount: 1
+      auth:
+      admin: CN=admin, OU=NIFI
+      SSL:
+        keystorePasswd: changeMe
+        truststorePasswd: changeMe
+
+      # Automaticaly disabled if OIDC or LDAP enabled
+      singleUser:
+        username: username
+        password: changemechangeme # Must to have at least 12 characters
+        ## Configure Ingress based on the documentation here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+        ##
+        ingress:
+					enabled: true
+					# className: nginx
+					annotations: {}
+					tls: []
+					hosts: []
+					path: /
+					# If you want to change the default path, see this issue https://github.com/cetic/helm-nifi/issues/22
+    	# Configure metrics
+    	metrics:
+        prometheus:
+            # Enable Prometheus metrics
+            enabled: false
+            # Port used to expose Prometheus metrics
+            port: 9092
+            serviceMonitor:
+            # Enable deployment of Prometheus Operator ServiceMonitor resource
+            enabled: false
+            # namespace: monitoring
+            # Additional labels for the ServiceMonitor
+            labels: {}
