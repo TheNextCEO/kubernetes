@@ -30,6 +30,10 @@ spec:
           hosts: []
           path: /
           # If you want to change the default path, see this issue https://github.com/cetic/helm-nifi/issues/22
+        zookeeper:
+          ## If true, install the Zookeeper chart
+          ## ref: https://github.com/bitnami/charts/blob/master/bitnami/zookeeper/values.yaml
+          enabled: false
         # Configure metrics
         metrics:
           prometheus:
